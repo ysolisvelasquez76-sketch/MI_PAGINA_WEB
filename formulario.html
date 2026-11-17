@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f7ff;
+            color: #243b53;
+        }
+
+        header {
+            background: #12345a;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #63d4ee;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 650px;
+            margin: 45px auto;
+            padding: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px #00000012;
+        }
+
+        h1 {
+            text-align: center;
+            color: #12345a;
+            margin-bottom: 15px;
+        }
+
+        .descripcion {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #64748b;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #12345a;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #087da5;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #12345a;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #087da5;
+        }
+
+        footer {
+            background: #12345a;
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>MI PÁGINA WEB</h2>
+
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="formulario.html">Formulario</a>
+            <a href="perfil.html">Perfil</a>
+        </nav>
+    </header>
+
+    <div class="contenedor">
+
+        <h1>FORMULARIO DE REGISTRO</h1>
+
+        <p class="descripcion">
+            Completa tus datos personales para registrarte.
+        </p>
+
+        <form id="formulario">
+
+            <label>Nombres:</label>
+            <input type="text" name="nombres"
+                placeholder="Ingresa tus nombres" required>
+
+            <label>Apellidos:</label>
+            <input type="text" name="apellidos"
+                placeholder="Ingresa tus apellidos" required>
+
+            <label>Correo electrónico:</label>
+            <input type="email" name="correo"
+                placeholder="ejemplo@gmail.com" required>
+
+            <label>Teléfono:</label>
+            <input type="tel" name="telefono"
+                placeholder="Ingresa tu teléfono" required>
+
+            <label>Fecha de nacimiento:</label>
+            <input type="date" name="fecha" required>
+
+            <label>Género:</label>
+            <select name="genero" required>
+                <option value="">Selecciona una opción</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Otro">Otro</option>
+            </select>
+
+            <label>Dirección:</label>
+            <textarea name="direccion"
+                placeholder="Ingresa tu dirección"
+                rows="3" required></textarea>
+
+            <button type="submit">REGISTRAR DATOS</button>
+
+        </form>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Mi Página Web | Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+
+        const formulario = document.getElementById("formulario");
+
+        formulario.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const datos = {
+                nombres: formulario.elements["nombres"].value,
+                apellidos: formulario.elements["apellidos"].value,
+                correo: formulario.elements["correo"].value,
+                telefono: formulario.elements["telefono"].value,
+                fecha: formulario.elements["fecha"].value,
+                genero: formulario.elements["genero"].value,
+                direccion: formulario.elements["direccion"].value
+            };
+
+            localStorage.setItem(
+                "datosUsuario",
+                JSON.stringify(datos)
+            );
+
+            alert("¡Tus datos se guardaron correctamente!");
+
+            window.location.href = "perfil.html";
+
+        });
+
+    </script>
+
+</body>
+</html>

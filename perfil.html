@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f7ff;
+            color: #243b53;
+        }
+
+        header {
+            background: #12345a;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #63d4ee;
+        }
+
+        .contenedor {
+            max-width: 650px;
+            width: 90%;
+            margin: 50px auto;
+            padding: 35px;
+            background: white;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px #00000012;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: #dff4ff;
+            color: #12345a;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+        }
+
+        h1 {
+            color: #12345a;
+            margin-bottom: 25px;
+        }
+
+        .dato {
+            text-align: left;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: #f0f7ff;
+            border-radius: 10px;
+        }
+
+        .dato strong {
+            color: #087da5;
+        }
+
+        .boton {
+            display: inline-block;
+            background: #12345a;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .boton:hover {
+            background: #087da5;
+        }
+
+        footer {
+            background: #12345a;
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>MI PÁGINA WEB</h2>
+
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="formulario.html">Formulario</a>
+            <a href="perfil.html">Perfil</a>
+        </nav>
+    </header>
+
+    <div class="contenedor">
+
+        <div class="avatar">👤</div>
+
+        <h1>MI PERFIL</h1>
+
+        <p>Información del usuario registrado</p>
+
+        <div class="dato">
+            <strong>Nombres:</strong>
+            <span id="nombres">No registrado</span>
+        </div>
+
+        <div class="dato">
+            <strong>Apellidos:</strong>
+            <span id="apellidos">No registrado</span>
+        </div>
+
+        <div class="dato">
+            <strong>Correo:</strong>
+            <span id="correo">No registrado</span>
+        </div>
+
+        <div class="dato">
+            <strong>Teléfono:</strong>
+            <span id="telefono">No registrado</span>
+        </div>
+
+        <div class="dato">
+            <strong>Fecha de nacimiento:</strong>
+            <span id="fecha">No registrado</span>
+        </div>
+
+        <div class="dato">
+            <strong>Género:</strong>
+            <span id="genero">No registrado</span>
+        </div>
+
+        <div class="dato">
+            <strong>Dirección:</strong>
+            <span id="direccion">No registrado</span>
+        </div>
+
+        <a href="formulario.html" class="boton">
+            Editar mis datos
+        </a>
+
+        <a href="index.html" class="boton">
+            Volver al inicio
+        </a>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Mi Página Web | Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        const parametros = new URLSearchParams(window.location.search);
+
+        const campos = [
+            "nombres",
+            "apellidos",
+            "correo",
+            "telefono",
+            "fecha",
+            "genero",
+            "direccion"
+        ];
+
+        campos.forEach(campo => {
+            const valor = parametros.get(campo);
+
+            if (valor) {
+                document.getElementById(campo).textContent = valor;
+            }
+        });
+    </script>
+
+</body>
+</html>
