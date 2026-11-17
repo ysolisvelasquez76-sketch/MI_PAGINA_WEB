@@ -25,6 +25,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         header h2 {
@@ -43,27 +45,26 @@
         }
 
         .contenedor {
-            max-width: 650px;
             width: 90%;
-            margin: 50px auto;
+            max-width: 700px;
+            margin: 45px auto;
             padding: 35px;
             background: white;
             border-radius: 20px;
-            text-align: center;
             box-shadow: 0 5px 20px #00000012;
+            text-align: center;
         }
 
         .avatar {
             width: 100px;
             height: 100px;
-            background: #dff4ff;
-            color: #12345a;
+            background: #e0f4ff;
             border-radius: 50%;
             margin: 0 auto 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 40px;
+            font-size: 45px;
         }
 
         h1 {
@@ -71,26 +72,31 @@
             margin-bottom: 25px;
         }
 
+        .descripcion {
+            margin-bottom: 15px;
+        }
+
         .dato {
-            text-align: left;
-            padding: 15px;
-            margin-bottom: 12px;
             background: #f0f7ff;
+            padding: 16px;
+            margin-bottom: 13px;
             border-radius: 10px;
+            text-align: left;
+            overflow-wrap: anywhere;
         }
 
         .dato strong {
-            color: #087da5;
+            color: #0086b3;
         }
 
         .boton {
             display: inline-block;
             background: #12345a;
             color: white;
-            padding: 14px 30px;
+            padding: 15px 30px;
+            margin: 20px 3px 0;
             border-radius: 30px;
             text-decoration: none;
-            margin-top: 20px;
         }
 
         .boton:hover {
@@ -102,6 +108,22 @@
             color: white;
             text-align: center;
             padding: 22px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+            }
+
+            nav a {
+                margin: 5px;
+                display: inline-block;
+            }
+
+            .contenedor {
+                padding: 22px;
+            }
         }
     </style>
 </head>
@@ -125,7 +147,9 @@
 
         <h1>MI PERFIL</h1>
 
-        <p>Información del usuario registrado</p>
+        <p class="descripcion">
+            Información del usuario registrado
+        </p>
 
         <div class="dato">
             <strong>Nombres:</strong>
@@ -177,25 +201,37 @@
     </footer>
 
     <script>
-        const parametros = new URLSearchParams(window.location.search);
 
-        const campos = [
-            "nombres",
-            "apellidos",
-            "correo",
-            "telefono",
-            "fecha",
-            "genero",
-            "direccion"
-        ];
+        // Recuperar los datos guardados
+        const datosGuardados = localStorage.getItem("datosUsuario");
 
-        campos.forEach(campo => {
-            const valor = parametros.get(campo);
+        if (datosGuardados) {
 
-            if (valor) {
-                document.getElementById(campo).textContent = valor;
-            }
-        });
+            const datos = JSON.parse(datosGuardados);
+
+            document.getElementById("nombres").textContent =
+                datos.nombres || "No registrado";
+
+            document.getElementById("apellidos").textContent =
+                datos.apellidos || "No registrado";
+
+            document.getElementById("correo").textContent =
+                datos.correo || "No registrado";
+
+            document.getElementById("telefono").textContent =
+                datos.telefono || "No registrado";
+
+            document.getElementById("fecha").textContent =
+                datos.fecha || "No registrado";
+
+            document.getElementById("genero").textContent =
+                datos.genero || "No registrado";
+
+            document.getElementById("direccion").textContent =
+                datos.direccion || "No registrado";
+
+        }
+
     </script>
 
 </body>

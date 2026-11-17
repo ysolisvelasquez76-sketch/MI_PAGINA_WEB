@@ -177,46 +177,41 @@
 
     <script>
 
- 
+const formulario = document.getElementById("formulario");
+// Cargar los datos guardados anteriormente
 const datosGuardados = localStorage.getItem("datosUsuario");
 
-const campos = [
-    "nombres",
-    "apellidos",
-    "correo",
-    "telefono",
-    "fecha",
-    "genero",
-    "direccion"
-];
-
 if (datosGuardados) {
-
     const datos = JSON.parse(datosGuardados);
 
-    campos.forEach(campo => {
-
-        const elemento = document.getElementById(campo);
-
-        if (elemento) {
-            elemento.textContent = datos[campo] || "No registrado";
-        }
-
-    });
-
-} else {
-
-    campos.forEach(campo => {
-
-        const elemento = document.getElementById(campo);
-
-        if (elemento) {
-            elemento.textContent = "No registrado";
-        }
-
-    });
-
+    formulario.elements["nombres"].value = datos.nombres || "";
+    formulario.elements["apellidos"].value = datos.apellidos || "";
+    formulario.elements["correo"].value = datos.correo || "";
+    formulario.elements["telefono"].value = datos.telefono || "";
+    formulario.elements["fecha"].value = datos.fecha || "";
+    formulario.elements["genero"].value = datos.genero || "";
+    formulario.elements["direccion"].value = datos.direccion || "";
 }
+
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const datos = {
+        nombres: formulario.elements["nombres"].value,
+        apellidos: formulario.elements["apellidos"].value,
+        correo: formulario.elements["correo"].value,
+        telefono: formulario.elements["telefono"].value,
+        fecha: formulario.elements["fecha"].value,
+        genero: formulario.elements["genero"].value,
+        direccion: formulario.elements["direccion"].value
+    };
+
+    localStorage.setItem("datosUsuario", JSON.stringify(datos));
+
+    alert("¡Tus datos se guardaron correctamente!");
+
+    window.location.href = "perfil.html";
+});
 
     </script>
 
